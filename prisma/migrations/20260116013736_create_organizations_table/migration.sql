@@ -1,0 +1,18 @@
+-- CreateTable
+CREATE TABLE "organizations" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password_hash" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "address" TEXT NOT NULL,
+    "zip_code" TEXT NOT NULL,
+    "whatsapp" TEXT NOT NULL,
+    "accountable" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "organizations_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "organizations_email_key" ON "organizations"("email");

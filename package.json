@@ -1,0 +1,36 @@
+{
+  "name": "desafio-03",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "25.0.9",
+    "tsup": "8.5.1",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "-": "0.0.1",
+    "@prisma/client": "6.8.2",
+    "bcryptjs": "3.0.3",
+    "D": "1.0.0",
+    "dotenv": "17.2.3",
+    "fastify": "5.7.0",
+    "prisma": "6.8.2",
+    "vite-tsconfig-paths": "6.0.5",
+    "vitest": "4.0.18",
+    "zod": "4.3.5"
+  }
+}
