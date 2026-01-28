@@ -1,16 +1,21 @@
 import { hash } from "bcryptjs"
 import { OrganizationsRepository } from "../repositories/organizations-repository"
 import { emailAlreadyExistsError } from "./errors/email-already-exists-error"
+import { Organization } from "../generated/prisma"
 
 interface RegisterOrganizationsUseCaseRequest {
     email: string,
     password: string,
     title: string,
-    description?: string | null,
+    description?: string,
     address: string,
     zip_code: string,
     whatsapp: string,
     accountable: string
+}
+
+interface RegisterOrganizationsUseCaseResponse {
+    organization: Organization
 }
 
 export class RegisterOrganizationsUseCase {
@@ -26,7 +31,7 @@ export class RegisterOrganizationsUseCase {
         zip_code,
         whatsapp,
         accountable,
-    }: RegisterOrganizationsUseCaseRequest) {
+    }: RegisterOrganizationsUseCaseRequest): Promise <RegisterOrganizationsUseCaseResponse> {
 
         const password_hash = await hash(password, 6)
 
@@ -36,15 +41,17 @@ export class RegisterOrganizationsUseCase {
             throw new emailAlreadyExistsError()
         }
 
-        await this.organizationRepository.create({
+        const organization = await this.organizationRepository.create({
             email,
             password_hash,
             title,
-            description: description ?? null,
+            ...(description !== undefined && { description }),
             address,
             zip_code,
             whatsapp,
             accountable
         })
+
+        return { organization }
     }
 }

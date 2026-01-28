@@ -22,7 +22,7 @@ export class PrismaOrganizationsRepository implements OrganizationsRepository {
         return organization
     }
 
-    async finById(organization_id: string): Promise<Organization | null> {
+    async findById(organization_id: string): Promise<Organization | null> {
         const organization = await prisma.organization.findFirst({
             where:{
                 id: organization_id
