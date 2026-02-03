@@ -1,7 +1,5 @@
 import { Pet } from "../generated/prisma"
-import { OrganizationsRepository } from "../repositories/organizations-repository"
 import { PetsRepository } from "../repositories/pets-repository"
-import { organizationNotExistsError } from "./errors/organization-not-exists-error"
 
 interface FetchPetsInACityUseCaseRequest {
     city: string
