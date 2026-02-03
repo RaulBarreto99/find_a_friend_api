@@ -1,8 +1,8 @@
 import fastify from "fastify";
-import { petsRoutes } from "../http/controllers/pets/routes";
-import { organizationsRoutes } from "../http/controllers/organizations/routes";
 import { ZodError } from "zod";
 import { env } from "./env";
+import { petsRoutes } from "./http/controllers/pets/routes";
+import { organizationsRoutes } from "./http/controllers/organizations/routes";
 
 
 export const app = fastify();

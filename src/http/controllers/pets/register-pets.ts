@@ -1,8 +1,8 @@
 import z from "zod"
 import { FastifyReply, FastifyRequest } from "fastify"
-import { RegisterPetsUseCase } from "../../../src/use-cases/register-pets"
-import { PrismaPetsRepository } from "../../../src/repositories/prisma/prisma-pets-repository"
-import { PrismaOrganizationsRepository } from "../../../src/repositories/prisma/prisma-organizations-repository"
+import { RegisterPetsUseCase } from "../../../../src/use-cases/register-pets"
+import { PrismaPetsRepository } from "../../../../src/repositories/prisma/prisma-pets-repository"
+import { PrismaOrganizationsRepository } from "../../../../src/repositories/prisma/prisma-organizations-repository"
 
 export async function registerPets(request: FastifyRequest, reply: FastifyReply) {
     const registerBodySchema = z.object({
