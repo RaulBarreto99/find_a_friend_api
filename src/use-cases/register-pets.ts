@@ -11,6 +11,7 @@ interface RegisterPetsUseCaseRequest {
     energy?: string
     independence?: string
     enviroment?: string
+    city: string
     photos?: any
     requirements?: any
     organization_id: string
@@ -35,6 +36,7 @@ export class RegisterPetsUseCase {
         energy,
         independence,
         enviroment,
+        city,
         photos,
         requirements,
         organization_id,
@@ -48,6 +50,7 @@ export class RegisterPetsUseCase {
 
         const pet = await this.petRepository.create({
             name,
+            city,
             organization_id,
 
             ...(description !== undefined && { description }),

@@ -32,7 +32,7 @@ model Organization {
 }
 
 model Pet {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   name         String
   description  String?
   birthday     DateTime?
@@ -40,9 +40,10 @@ model Pet {
   energy       String?
   independence String?
   enviroment   String?
+  city         String
   photos       Json?
   requirements Json?
-  created_at   DateTime @default(now())
+  created_at   DateTime  @default(now())
 
   organization    Organization @relation(fields: [organization_id], references: [id])
   organization_id String

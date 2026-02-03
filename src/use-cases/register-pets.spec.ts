@@ -38,6 +38,7 @@ describe('Register Pet Use Case', () => {
             energy: "test",
             independence: "test",
             enviroment: "test",
+            city: "test",
             photos: {},
             requirements: {},
             organization_id: "org-01"
@@ -57,6 +58,7 @@ describe('Register Pet Use Case', () => {
                 energy: "test",
                 independence: "test",
                 enviroment: "test",
+                city: "test",
                 photos: {},
                 requirements: {},
                 organization_id: "org-inexistent"
