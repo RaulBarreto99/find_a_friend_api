@@ -8,7 +8,7 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
     const registerBodySchema = z.object({
         name: z.string(),
         description: z.string().optional(),
-        birthday: z.coerce.date().optional(),
+        age: z.string().optional(),
         size: z.string().optional(),
         energy: z.string().optional(),
         independence: z.string().optional(),
@@ -19,7 +19,7 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
         organization_id: z.string(),
     })
 
-    const { name, description, birthday, size, energy, independence, enviroment, city, photos, requirements, organization_id } = registerBodySchema.parse(request.body)
+    const { name, description, age, size, energy, independence, enviroment, city, photos, requirements, organization_id } = registerBodySchema.parse(request.body)
 
     try {
         const petRepository = new PrismaPetsRepository()
@@ -33,7 +33,7 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
             organization_id,
 
             ...(description !== undefined && { description }),
-            ...(birthday !== undefined && { birthday }),
+            ...(age !== undefined && { age }),
             ...(size !== undefined && { size }),
             ...(energy !== undefined && { energy }),
             ...(independence !== undefined && { independence }),

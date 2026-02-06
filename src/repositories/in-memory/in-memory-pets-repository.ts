@@ -11,7 +11,7 @@ export class InMemoryPetsRepository implements PetsRepository {
             id: randomUUID(),
             name: data.name,
             description: data.description ?? null,
-            birthday: data.birthday ? new Date(data.birthday) : null,
+            age: data.age ?? null,
             size: data.size ?? null,
             energy: data.energy ?? null,
             independence: data.independence ?? null,
@@ -31,6 +31,20 @@ export class InMemoryPetsRepository implements PetsRepository {
     async findManyByCity(city: string, page: number) {
         return this.items
             .filter((item) => item.city === city)
+            .slice((page - 1) * 20, page * 20)
+    }
+
+    async findManyByCaracteristics(data: Prisma.PetWhereInput, page: number) {
+        return this.items
+            .filter((item) => {
+                if (data.city && item.city !== data.city) return false
+                if (data.age && item.age !== data.age) return false
+                if (data.size && item.size !== data.size) return false
+                if (data.energy && item.energy !== data.energy) return false
+                if (data.independence && item.independence !== data.independence) return false
+
+                return true
+            })
             .slice((page - 1) * 20, page * 20)
     }
 }

@@ -6,7 +6,7 @@ import { organizationNotExistsError } from "./errors/organization-not-exists-err
 interface RegisterPetsUseCaseRequest {
     name: string
     description?: string
-    birthday?: Date
+    age?: string
     size?: string
     energy?: string
     independence?: string
@@ -31,7 +31,7 @@ export class RegisterPetsUseCase {
     async execute({
         name,
         description,
-        birthday,
+        age,
         size,
         energy,
         independence,
@@ -54,7 +54,7 @@ export class RegisterPetsUseCase {
             organization_id,
 
             ...(description !== undefined && { description }),
-            ...(birthday !== undefined && { birthday }),
+            ...(age !== undefined && { age }),
             ...(size !== undefined && { size }),
             ...(energy !== undefined && { energy }),
             ...(independence !== undefined && { independence }),

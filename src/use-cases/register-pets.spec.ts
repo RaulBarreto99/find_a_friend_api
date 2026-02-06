@@ -33,7 +33,7 @@ describe('Register Pet Use Case', () => {
         const { pet } = await sut.execute({
             name: "bia",
             description: "test",
-            birthday: new Date("2001-08-14"),
+            age: "filhote",
             size: "test",
             energy: "test",
             independence: "test",
@@ -53,7 +53,7 @@ describe('Register Pet Use Case', () => {
             sut.execute({
                 name: "bia",
                 description: "test",
-                birthday: new Date("2001-08-14"),
+                age: "filhote",
                 size: "test",
                 energy: "test",
                 independence: "test",

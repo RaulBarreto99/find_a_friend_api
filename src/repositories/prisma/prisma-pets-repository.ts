@@ -12,10 +12,22 @@ export class PrismaPetsRepository implements PetsRepository {
     }
     async findManyByCity(city: string, page: number) {
         const pets = await prisma.pet.findMany({
-            where:{
+            where: {
                 city: city
             },
-            take:20,
+            take: 20,
+            skip: (page - 1) * 20,
+        })
+
+        return pets
+    }
+
+    async findManyByCaracteristics(data: Prisma.PetWhereInput, page: number) {
+        const pets = await prisma.pet.findMany({
+            where: {
+                ...data,
+            },
+            take: 20,
             skip: (page - 1) * 20,
         })
 
