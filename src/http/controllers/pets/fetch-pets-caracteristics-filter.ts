@@ -5,21 +5,16 @@ import { FetchPetsCaracteristicsFilterUseCase } from "../../../use-cases/fetch-p
 
 export async function fetchPetsCaracteristicsFilter(request: FastifyRequest, reply: FastifyReply) {
 
-    const fetchPetsCaracteristicsFilterParamsSchema = z.object({
-        city: z.string(),
-    })
-
     const fetchPetsCaracteristicsFilterQuerySchema = z.object({
         page: z.coerce.number().min(1).default(1),
+        city: z.string(),
         age: z.string().optional(),
         size: z.string().optional(),
         energy: z.string().optional(),
         independence: z.string().optional(),
     })
 
-    const { city } = fetchPetsCaracteristicsFilterParamsSchema.parse(request.params)
-
-    const { page, age, size, energy, independence } = fetchPetsCaracteristicsFilterQuerySchema.parse(request.query)
+    const { page, city, age, size, energy, independence } = fetchPetsCaracteristicsFilterQuerySchema.parse(request.query)
 
     const petRepository = new PrismaPetsRepository()
     const fetchPetsCaracteristicsFilterUseCase = new FetchPetsCaracteristicsFilterUseCase(petRepository)

@@ -5,6 +5,6 @@ import { getPetDetails } from "./get-pets-details";
 
 export async function petsRoutes(app: FastifyInstance) {
     app.post('/pets', registerPets)
-    app.get('/pets/:city', fetchPetsCaracteristicsFilter)
+    app.get('/pets/search', fetchPetsCaracteristicsFilter)
     app.get('/pets/:petId', getPetDetails)
 }

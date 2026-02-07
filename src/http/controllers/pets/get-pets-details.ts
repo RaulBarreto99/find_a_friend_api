@@ -11,11 +11,13 @@ export async function getPetDetails(request: FastifyRequest, reply: FastifyReply
 
     const { petId } = getPetDetailsParamsSchema.parse(request.params)
 
+    let pet
+
     try {
         const petsRepository = new PrismaPetsRepository()
         const getPetDetailsUseCase = new GetPetDetailsUseCase(petsRepository)
 
-        await getPetDetailsUseCase.execute({
+        pet = await getPetDetailsUseCase.execute({
             pet_id: petId
         })
     } catch (err) {
@@ -27,5 +29,7 @@ export async function getPetDetails(request: FastifyRequest, reply: FastifyReply
         throw err
     }
 
-    return reply.status(200).send()
+    return reply.status(200).send({
+        pet,
+    })
 }
