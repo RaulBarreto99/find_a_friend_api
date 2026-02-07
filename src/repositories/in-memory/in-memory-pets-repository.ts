@@ -2,13 +2,14 @@ import { randomUUID } from "node:crypto";
 import { Prisma, Pet } from "../../generated/prisma";
 import { PetsRepository } from "../pets-repository";
 import { JsonValue } from "../../generated/prisma/runtime/library";
+import id from "zod/v4/locales/id.js";
 
 export class InMemoryPetsRepository implements PetsRepository {
     public items: Pet[] = []
 
     async create(data: Prisma.PetUncheckedCreateInput): Promise<Pet> {
         const pet: Pet = {
-            id: randomUUID(),
+            id: data.id ?? randomUUID(),
             name: data.name,
             description: data.description ?? null,
             age: data.age ?? null,
@@ -46,5 +47,15 @@ export class InMemoryPetsRepository implements PetsRepository {
                 return true
             })
             .slice((page - 1) * 20, page * 20)
+    }
+
+    async findById(pet_id: string) {
+        const pet = this.items.find(item => item.id === pet_id )
+
+        if(!pet){
+            return null
+        }
+
+        return pet
     }
 }

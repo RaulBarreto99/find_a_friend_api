@@ -9,18 +9,18 @@ export async function getOrganizationProfile(request: FastifyRequest, reply: Fas
         organizationId: z.string(),
     })
 
-    const { organizationId} = getOrganizationProfileBodySchema.parse(request.body)
+    const { organizationId } = getOrganizationProfileBodySchema.parse(request.body)
 
     try {
         const organizationsRepository = new PrismaOrganizationsRepository()
         const getOrganizationProfileUseCase = new GetOrganizationProfileUseCase(organizationsRepository)
-        
+
         await getOrganizationProfileUseCase.execute({
             organizationId
         })
     } catch (err) {
 
-        if(err instanceof resourceNotFoundError){
+        if (err instanceof resourceNotFoundError) {
             return reply.status(400).send({ message: err.message })
         }
 
